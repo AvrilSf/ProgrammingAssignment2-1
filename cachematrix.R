@@ -12,6 +12,7 @@ makeCacheMatrix <- function(x = matrix()) {
                 x <<- y           ## Value of matrix in parent environment.
                 mtr <<- NULL      ## If there is a new matrix,reset mtr to NULL.
         }
+        
         get <- function() x       ## Define the get function - returns value of
                                   ## the matrix argument.        
         set_inve <- function(solve) mtr <<- solve    ## Assigns value of mtr in
@@ -32,11 +33,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-        mtr <- x[get_inve()]
-        if(!is.null(mtr)) {                     # In inverse matrix is not NULL
+        
+        mtr <- x$get_inve
+        if (!is.null(mtr)) {                     # In inverse matrix is not NULL
                 message("getting cached data")  # type message:"getting cached..
                 return(mtr)                     # return the invertible matrix
         }                       # if value of invertible matrix is null then
+        
         data2 <- x$get()        # get the original matrix data 
         mtr <- solve(data2, 1)  # use solve function to inverse matrix
         x$set_inve(mtr)         # set the invertible matrix
