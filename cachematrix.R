@@ -15,7 +15,7 @@ makeCacheMatrix <- function(x = matrix()) {
         
         get <- function() x       ## Define the get function - returns value of
                                   ## the matrix argument.        
-        set_inve <- function(solve) mtr <<- solve    ## Assigns value of mtr in
+        set_inve <- function(solved) mtr <<- solved    ## Assigns value of mtr in
                                   ## parent environment.
         get_inve <- function() mtr ## Gets the value of mtr where called.
         list(set = set, get = get,
@@ -27,9 +27,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 # This cacheSolve function gives the inverse of the square matrix created in the
 # previous function. It firstly verifies if the inverse is already calculated.
-# If it is prior to this function, it gets the inverse from the cache and avoids 
-# the calculation. Else, it finds the inverse of the matrix and sets the value
-# in the cache through the set_inve function.
+# If it is, prior to this function, it gets the inverse from the cache and 
+# avoids the calculation. Alternatively, it finds the inverse of the matrix and
+# sets the value in the cache through the set_inve function.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
